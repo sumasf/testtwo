@@ -1,0 +1,250 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>CTqXpIW7WHK80FI-gt-1145057-2025-09-02T07:38:10.455Z::pd.xml</types1:EntryId>
+      <types1:Name>chak_B360_Cleanse_DataEnrich_Demo</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>suma_p01</types1:CreatedBy>
+      <types1:CreationDate>2025-09-02T07:38:10Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  GUID="808OCHqzM0AdLrBZyEsgOj"
+                  displayName="chak_B360_Cleanse_DataEnrich_Demo"
+                  name="chak_B360_Cleanse_DataEnrich_Demo"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description/>
+            <tags/>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description=""
+                          name="request"
+                          required="false"
+                          type="objectlist">
+                  <options>
+                     <option name="referenceTo">$po:AutotranslationInputPerRecord</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">69ekD1uWFgges4xjDHOJU6</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="processoutput" type="objectlist">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="referenceTo">$po:venuoutputperRecordJune30</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">9d29p9zkh2vewu8nQB2NO9</option>
+                     <option hide="true" name="multiSelect">true</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="tmp_test" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment skipIfRunning="false" suspendOnFault="false" tracingLevel="verbose">
+               <rest>
+                  <allowAnonymousAccess/>
+                  <wholePayload inputWholePayload="true" outputWholePayload="true"/>
+               </rest>
+            </deployment>
+            <extData>
+               <nvpair name="treatEmptyStringAsNotNull">false</nvpair>
+               <nvpair name="treatEmptyStringAsNull">true</nvpair>
+               <nvpair name="treatEmptyObjectListAsArray">true</nvpair>
+               <nvpair name="treatEmptyObjectListAsNotArray">false</nvpair>
+               <nvpair name="treatEmptyObjectListAsNotArray">false</nvpair>
+               <nvpair name="treatEmptyStringAsNull">true</nvpair>
+            </extData>
+            <flow id="ea98d091d-8b29-45aa-bd38-112abd6bedde">
+               <start id="j33bb74c0-aa37-494b-be0f-16bdbad4f093">
+                  <link id="p201cbdac-3fa0-478b-aebc-8da1d7b6ec06"
+                        targetId="a19R4sKZ4JEUIdeRLe2JdjyU-Assignmentad9fabaf-c3c4-4926-934e-b4272782cc36"/>
+               </start>
+               <assignment id="a19R4sKZ4JEUIdeRLe2JdjyU-Assignmentad9fabaf-c3c4-4926-934e-b4272782cc36">
+                  <title>Assignment to processoutput</title>
+                  <operation source="formula" to="output.processoutput">
+                     <expression language="XQuery">let $input-xml := $input.request 
+
+
+(: Reference data - unused in this example but kept :)
+let $ReferenceOutput :=
+  &lt;root&gt;
+    &lt;referenceprocess&gt;&lt;Code&gt;NL-BSN&lt;/Code&gt;&lt;Name&gt;BSN-BSN number&lt;/Name&gt;&lt;/referenceprocess&gt;
+    &lt;referenceprocess&gt;&lt;Code&gt;NL-FI&lt;/Code&gt;&lt;Name&gt;FI-Financial Accounting (FI)&lt;/Name&gt;&lt;/referenceprocess&gt;
+    &lt;referenceprocess&gt;&lt;Code&gt;NL-KVK&lt;/Code&gt;&lt;Name&gt;KVK-KVK Number&lt;/Name&gt;&lt;/referenceprocess&gt;
+    &lt;referenceprocess&gt;&lt;Code&gt;NL-SI&lt;/Code&gt;&lt;Name&gt;SI-SI registration number&lt;/Name&gt;&lt;/referenceprocess&gt;
+    &lt;referenceprocess&gt;&lt;Code&gt;NL-VAT&lt;/Code&gt;&lt;Name&gt;VAT-Intracommunitary VAT code&lt;/Name&gt;&lt;/referenceprocess&gt;
+  &lt;/root&gt;
+
+(: Default country code from input XML - not used here, kept for structure :)
+let $Default_country_code := $input-xml/payload/BuCountry/text()
+
+(: Logic to get distinct country codes from reference and flag - kept unchanged :)
+let $DataEnrichLogic := 
+  let $Reference_Country_code := fn:distinct-values(
+    for $code in $ReferenceOutput//Code/text()
+    return fn:substring-before($code, '-')
+  )
+  let $GenerateCodeNameFlag :=
+    if (fn:contains($Reference_Country_code, $Default_country_code))
+    then 'DefaultCountry'
+    else 'DifferentCountry'
+  return
+    &lt;referenceCheck&gt;
+      &lt;referenceCountryCodes&gt;{string-join($Reference_Country_code, ', ')}&lt;/referenceCountryCodes&gt;
+      &lt;flagResult&gt;{$GenerateCodeNameFlag}&lt;/flagResult&gt;
+    &lt;/referenceCheck&gt;
+
+return 
+&lt;BuOutputPerRecord&gt;
+  &lt;docId&gt;{$input-xml/docId/text()}&lt;/docId&gt;
+  &lt;payload&gt;
+    &lt;BuCountry&gt;{$input-xml/payload/BuCountry/text()}&lt;/BuCountry&gt;
+    &lt;LegalCountry&gt;{$input-xml/payload/BuCountry/text()}&lt;/LegalCountry&gt;
+
+    {
+      (: If flag is DefaultCountry and no ChildBrandInputPayload, generate output from ReferenceOutput :)
+      if (($DataEnrichLogic/flagResult/text() = 'DefaultCountry') and (not(exists($input-xml/payload/ChildBrandInputPayload)))) then
+        (
+            &lt;ChildFGOutletBrands&gt;
+              &lt;BrandName&gt;Default_Brand1&lt;/BrandName&gt;
+              &lt;BrandCode&gt;Default_Code1&lt;/BrandCode&gt;
+            &lt;/ChildFGOutletBrands&gt;
+        )
+      else
+        (
+          (: Iterate over each ChildBrandInputPayload element :)
+          for $item in $input-xml/payload/ChildBrandInputPayload
+          return
+            &lt;ChildFGOutletBrands&gt;
+              &lt;BrandName&gt;{$item/BrandNames/text()}&lt;/BrandName&gt;
+              &lt;BrandCode&gt;{$item/BrandCode/text()}&lt;/BrandCode&gt;
+              &lt;sys&gt;{$item/sys/groupId/text()}&lt;/sys&gt;
+            &lt;/ChildFGOutletBrands&gt;
+        )
+    }
+    
+    &lt;sys&gt;
+      &lt;groupId&gt;{$input-xml/payload/sys/groupId/text()}&lt;/groupId&gt;
+    &lt;/sys&gt;
+  &lt;/payload&gt;
+  
+  &lt;validation&gt;
+    {
+      (: Create combined keys: lowercase BrandName + '|' + BrandCode :)
+      let $combinedKeys :=
+        for $item in $input-xml/payload/ChildBrandInputPayload
+        let $name := fn:lower-case($item/BrandNames)
+        let $code := $item/BrandCode
+        return concat($name, '|', $code)
+      
+      (: Find distinct keys that occur more than once :)
+      let $duplicateKeys :=
+        for $key in fn:distinct-values($combinedKeys)
+        where count($combinedKeys[. = $key]) &gt; 1
+        return $key
+      
+      let $hasDuplicates := exists($duplicateKeys)
+      
+      (: Identify first groupId for any duplicate combination :)
+      let $firstDuplicateGroupId := 
+        if ($hasDuplicates) then
+          (
+            for $item in $input-xml/payload/ChildBrandInputPayload
+            let $key := concat(fn:lower-case($item/BrandNames), '|', $item/BrandCode)
+            where $key = $duplicateKeys[1]
+            return $item/sys/groupId/text()
+          )[1]
+        else ()
+      
+      return (
+        &lt;passed&gt;{ if ($hasDuplicates) then 'false' else 'true' }&lt;/passed&gt;,
+        if ($hasDuplicates) then
+          &lt;fields&gt;
+            &lt;fieldName&gt;BrandNames&lt;/fieldName&gt;
+            &lt;sys&gt;&lt;groupId&gt;{$firstDuplicateGroupId}&lt;/groupId&gt;&lt;/sys&gt;
+          &lt;/fields&gt;
+        else ()
+      )
+    }
+  &lt;/validation&gt;
+&lt;/BuOutputPerRecord&gt;
+</expression>
+                  </operation>
+                  <link id="pbdb2b98e-8f69-4e93-881a-7914ba249530"
+                        targetId="a19R4sKZ4JEUIdeRLe2JdjyU-end-d7e219bef-e237-4c75-aa98-4a2f3953da94"/>
+               </assignment>
+               <end id="a19R4sKZ4JEUIdeRLe2JdjyU-end-d7e219bef-e237-4c75-aa98-4a2f3953da94">
+                  <title>End</title>
+               </end>
+            </flow>
+         </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>c937f634-60d1-42d2-a3d8-c2c91f5dd3d2</ns1:Id>
+               <ns1:Name>test1</ns1:Name>
+               <ns1:CreatedBy>suma_p01</ns1:CreatedBy>
+               <ns1:CreationDate>2025-09-02T07:38:10Z</ns1:CreationDate>
+               <ns1:ModifiedBy>suma_p01</ns1:ModifiedBy>
+               <ns1:ModificationDate>2025-09-02T07:38:10Z</ns1:ModificationDate>
+               <ns1:Data format="json">{
+    "request": [
+        {
+            "payload": [
+                {
+                    "sys": {
+                        "groupId": ""
+                    },
+                    "BrandName": "",
+                    "BrandFlag": "",
+                    "ChildOutletInputPayload": [
+                        {
+                            "BrandCode": "",
+                            "BrandNames": "",
+                            "sys": {
+                                "groupId": ""
+                            }
+                        }
+                    ],
+                    "ChildBrandInputPayload": [
+                        {
+                            "BrandCode": "",
+                            "BrandNames": "",
+                            "sys": {
+                                "groupId": ""
+                            }
+                        }
+                    ]
+                }
+            ],
+            "docId": ""
+        }
+    ]
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
+      </types1:Entry>
+      <types1:GUID>808OCHqzM0AdLrBZyEsgOj</types1:GUID>
+      <types1:DisplayName>chak_B360_Cleanse_DataEnrich_Demo</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2026-08-12T02:25:32.323Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
