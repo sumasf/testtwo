@@ -1,0 +1,64 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>oyRUDv2vSx0aa-gt-1143877-2025-09-02T07:38:10.232Z::po.xml</types1:EntryId>
+      <types1:Name>venuoutputperRecordJune30</types1:Name>
+      <types1:ParentFlowIds>CTqXpIW7WHK80FI-gt-1145057-2025-09-02T07:38:10.455Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+processobject</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>suma_p01</types1:CreatedBy>
+      <types1:CreationDate>2025-09-02T07:38:10Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:Entry>
+         <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                        displayName="venuoutputperRecordJune30"
+                        isByCopy="true"
+                        name="venuoutputperRecordJune30">
+            <description/>
+            <tags/>
+            <detail>
+               <field label=""
+                      name="docId"
+                      nullable="true"
+                      required="false"
+                      type="string">
+                  <options/>
+               </field>
+               <field label=""
+                      name="payload"
+                      nullable="true"
+                      required="false"
+                      type="objectlist">
+                  <options>
+                     <option name="relationshipName">Child</option>
+                     <option name="referenceTo">$po:venuoutputpayloadJUne30</option>
+                     <option name="guid">5EdH8f2ox6KjEuD9lvl168</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </field>
+               <field label=""
+                      name="validation"
+                      nullable="true"
+                      required="false"
+                      type="objectlist">
+                  <options>
+                     <option name="relationshipName">Child</option>
+                     <option name="referenceTo">$po:validationPayload_New</option>
+                     <option name="guid">0W2uXe8F48KcmwRkHK3kww</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </field>
+            </detail>
+         </processObject>
+      </types1:Entry>
+      <types1:GUID>9d29p9zkh2vewu8nQB2NO9</types1:GUID>
+      <types1:DisplayName>venuoutputperRecordJune30</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2026-08-12T02:24:54.535Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
