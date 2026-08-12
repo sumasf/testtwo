@@ -1,0 +1,51 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>lnMQoPVm5Y6tMFy-gt-1143867-2025-09-02T07:38:10.179Z::po.xml</types1:EntryId>
+      <types1:Name>AutotranslationInputPerRecord</types1:Name>
+      <types1:ParentFlowIds>CTqXpIW7WHK80FI-gt-1145057-2025-09-02T07:38:10.455Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+processobject</types1:MimeType>
+      <types1:Description>Process object that defines the input per record for auto-translation</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>suma_p01</types1:CreatedBy>
+      <types1:CreationDate>2025-09-02T07:38:10Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:Entry>
+         <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                        displayName="AutotranslationInputPerRecord"
+                        isByCopy="true"
+                        name="AutotranslationInputPerRecord">
+            <description>Process object that defines the input per record for auto-translation</description>
+            <tags/>
+            <detail>
+               <field label="payload"
+                      name="payload"
+                      nullable="true"
+                      required="false"
+                      type="objectlist">
+                  <options>
+                     <option name="relationshipName">Child</option>
+                     <option name="referenceTo">$po:AutotranslationInputPayload</option>
+                     <option name="guid">7LN0T5jedaahE0aF1DTXch</option>
+                  </options>
+               </field>
+               <field label="docId"
+                      name="docId"
+                      nullable="false"
+                      required="true"
+                      type="string">
+                  <options/>
+               </field>
+            </detail>
+         </processObject>
+      </types1:Entry>
+      <types1:GUID>69ekD1uWFgges4xjDHOJU6</types1:GUID>
+      <types1:DisplayName>AutotranslationInputPerRecord</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2026-08-12T02:24:04.552Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
