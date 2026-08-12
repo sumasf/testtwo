@@ -1,0 +1,67 @@
+{
+  "objectInfo" : {
+    "id" : "eFONdAsxUkBcWas2fJjpyl",
+    "name" : "PRCS_cv_Copyfrom_nomorethan1child",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "vX3cjk91pqrzYLn-gt-13115-2026-04-09T08:53:48.343Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "updateTime" : "2026-08-12T03:22:31.463Z",
+  "objectRefs" : [ {
+    "id" : "3vnbVOjxJUzkFN7UwKQngd",
+    "name" : "TP_Response",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "hrswVYx8R8WrY1S-gt-13105-2026-04-09T08:53:48.113Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/custom validation"
+  }, {
+    "id" : "4GRAOcNH3Bwd1WkqrTs1s7",
+    "name" : "TP_Request",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "dypKwKBqRi92qBb-gt-13095-2026-04-09T08:53:48.062Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/custom validation"
+  } ],
+  "readableFileExtension" : null,
+  "readableFilePresent" : false
+}
