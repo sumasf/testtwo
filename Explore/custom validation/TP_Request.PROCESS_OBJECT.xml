@@ -1,0 +1,53 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>dypKwKBqRi92qBb-gt-13095-2026-04-09T08:53:48.062Z::po.xml</types1:EntryId>
+      <types1:Name>TP_Request-1</types1:Name>
+      <types1:ParentFlowIds>9Gjw4ARW8UBM7zs-gt-12843-2026-04-09T08:54:20.982Z::pd.xml,vX3cjk91pqrzYLn-gt-13115-2026-04-09T08:53:48.343Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+processobject</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>suma_p01</types1:CreatedBy>
+      <types1:CreationDate>2026-04-09T08:53:48Z</types1:CreationDate>
+      <types1:ModifiedBy>suma_p01</types1:ModifiedBy>
+      <types1:ModificationDate>2026-04-09T08:54:21Z</types1:ModificationDate>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:Entry>
+         <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                        displayName="TP_Request"
+                        isByCopy="true"
+                        name="TP_Request-1">
+            <description/>
+            <tags/>
+            <detail>
+               <field label=""
+                      name="docId"
+                      nullable="true"
+                      required="false"
+                      type="string">
+                  <options/>
+               </field>
+               <field label=""
+                      name="payload"
+                      nullable="true"
+                      required="false"
+                      type="objectlist">
+                  <options>
+                     <option name="relationshipName">Child</option>
+                     <option name="referenceTo">$po:TP_Input_payload-1</option>
+                     <option name="guid">730OAq4HCezjVAzX1SHOMV</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </field>
+            </detail>
+         </processObject>
+      </types1:Entry>
+      <types1:GUID>4GRAOcNH3Bwd1WkqrTs1s7</types1:GUID>
+      <types1:DisplayName>TP_Request</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2026-08-12T03:21:42.42Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

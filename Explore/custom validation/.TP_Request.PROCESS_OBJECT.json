@@ -1,0 +1,47 @@
+{
+  "objectInfo" : {
+    "id" : "4GRAOcNH3Bwd1WkqrTs1s7",
+    "name" : "TP_Request",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "dypKwKBqRi92qBb-gt-13095-2026-04-09T08:53:48.062Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "updateTime" : "2026-08-12T03:21:42.648Z",
+  "objectRefs" : [ {
+    "id" : "730OAq4HCezjVAzX1SHOMV",
+    "name" : "TP_Input_payload",
+    "type" : "PROCESS_OBJECT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "W0bdpIO3M4WwOC2-gt-13075-2026-04-09T08:53:47.774Z::po.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/custom validation"
+  } ],
+  "readableFileExtension" : null,
+  "readableFilePresent" : false
+}
