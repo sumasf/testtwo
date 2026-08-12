@@ -1,0 +1,192 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>vX3cjk91pqrzYLn-gt-13115-2026-04-09T08:53:48.343Z::pd.xml</types1:EntryId>
+      <types1:Name>PRCS_cv_Copyfrom_nomorethan1child</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>suma_p01</types1:CreatedBy>
+      <types1:CreationDate>2026-04-09T08:53:48Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  GUID="eFONdAsxUkBcWas2fJjpyl"
+                  displayName="PRCS_cv_Copyfrom_nomorethan1child"
+                  name="PRCS_cv_Copyfrom_nomorethan1child"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description/>
+            <tags/>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description=""
+                          name="Request"
+                          required="false"
+                          type="objectlist">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="referenceTo">$po:TP_Request-1</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">4GRAOcNH3Bwd1WkqrTs1s7</option>
+                     <option hide="true" name="multiSelect">true</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="Response" type="objectlist">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="referenceTo">$po:TP_Response-1</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">3vnbVOjxJUzkFN7UwKQngd</option>
+                     <option hide="true" name="multiSelect">true</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="tmp_docid" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="tmp_validation" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment skipIfRunning="false" suspendOnFault="false" tracingLevel="verbose">
+               <rest>
+                  <allowAnonymousAccess/>
+                  <wholePayload inputWholePayload="true" outputWholePayload="true"/>
+               </rest>
+            </deployment>
+            <extData>
+               <nvpair name="treatEmptyObjectListAsArray">true</nvpair>
+               <nvpair name="treatEmptyObjectListAsNotArray">false</nvpair>
+               <nvpair name="treatEmptyStringAsNull">true</nvpair>
+               <nvpair name="treatEmptyObjectListAsNotArray">false</nvpair>
+            </extData>
+            <flow id="cf257b754-0ee3-4668-9118-b4d5cb0ef945">
+               <start id="jdedc5d08-89e0-4c4c-8269-fae1ac1e9595">
+                  <link id="a03d73758-5448-4ed8-b49f-b75888f5c869"
+                        targetId="a102MEEM5X0Jxl4U8tNiFMMh-Assignmentcca2db04-09e1-441e-b4f6-2dd03fd14fb1"/>
+               </start>
+               <assignment id="a102MEEM5X0Jxl4U8tNiFMMh-Assignmentcca2db04-09e1-441e-b4f6-2dd03fd14fb1">
+                  <title>Assignment to tmp_docid, tmp_validation</title>
+                  <operation source="formula" to="temp.tmp_docid">
+                     <expression language="XQuery">$input.Request[1]/docId</expression>
+                  </operation>
+                  <operation source="formula" to="temp.tmp_validation">
+                     <expression language="XQuery">
+let $CF := $input.Request[1]/payload[1]/CopyFrom 
+
+
+ 
+return
+    if (list:count($CF) &gt; 1)
+    then
+        "false"
+    else
+        "true"</expression>
+                  </operation>
+                  <link id="o320c40b3-0bc2-435f-9a10-f6004ad314fe"
+                        targetId="a102MEEM5X0Jxl4U8tNiFMMh-Assignment00cca80f-01e0-47f7-80c5-1499850833f8"/>
+               </assignment>
+               <assignment id="a102MEEM5X0Jxl4U8tNiFMMh-Assignment00cca80f-01e0-47f7-80c5-1499850833f8">
+                  <title>Assignment to Response</title>
+                  <operation source="formula" to="output.Response">
+                     <expression language="XQuery">&lt;TP_Response&gt;
+ &lt;docId&gt;{ $temp.tmp_docid }&lt;/docId&gt;
+
+{
+if ( $temp.tmp_validation/text() = "false") then (
+ &lt;validation&gt;
+  &lt;passed&gt;false&lt;/passed&gt;
+      &lt;fields&gt;
+      &lt;fieldName&gt;newPartyName&lt;/fieldName&gt;
+      &lt;sys&gt;
+         &lt;groupId&gt;{$input.Request[1]/payload[1]/CopyFrom[1]/sys[1]/groupId }         &lt;/groupId&gt;
+      &lt;/sys&gt;
+      &lt;/fields&gt;
+  &lt;/validation&gt;
+
+          
+
+    ) else (
+
+ &lt;validation&gt;
+
+  &lt;passed&gt;true&lt;/passed&gt;
+
+ &lt;/validation&gt;
+
+    )
+
+}
+
+&lt;/TP_Response&gt;</expression>
+                  </operation>
+                  <link id="bf18447ad-59b2-4e1c-97ce-963a326f1550"
+                        targetId="a102MEEM5X0Jxl4U8tNiFMMh-end-sc512da25-e4fb-476e-80d7-9e7cdc4c9971"/>
+               </assignment>
+               <end id="a102MEEM5X0Jxl4U8tNiFMMh-end-sc512da25-e4fb-476e-80d7-9e7cdc4c9971">
+                  <title>End</title>
+               </end>
+            </flow>
+         </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>3a5d6d01-c9ce-4875-9479-a49869c7e964</ns1:Id>
+               <ns1:Name>test</ns1:Name>
+               <ns1:CreatedBy>suma_p01</ns1:CreatedBy>
+               <ns1:CreationDate>2026-04-09T08:53:48Z</ns1:CreationDate>
+               <ns1:ModifiedBy>suma_p01</ns1:ModifiedBy>
+               <ns1:ModificationDate>2026-04-09T08:53:48Z</ns1:ModificationDate>
+               <ns1:Data format="json">{
+    "Request": [
+        {
+            "docId": "111",
+            "payload": [
+                {
+                    "FieldToShowValidationMessage": "",
+                    "sys": {
+                        "groupId": "1112"
+                    },
+                    "CopyFrom": [
+                        {
+                            "sys": {
+                                "groupId": "1113"
+                            },
+                            "newPartyName": "test1"
+                        },
+                       {
+                            "sys": {
+                                "groupId": "1113"
+                            },
+                            "newPartyName": "test2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
+      </types1:Entry>
+      <types1:GUID>eFONdAsxUkBcWas2fJjpyl</types1:GUID>
+      <types1:DisplayName>PRCS_cv_Copyfrom_nomorethan1child</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2026-08-12T03:22:31.367Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
